@@ -1,6 +1,6 @@
 public class GroupCmd extends LibraryCommand {
-    public GroupCmd(String authorArgument) {
-        //dummy
+    public GroupCmd(String argumentInput) {
+        super(CommandType.GROUP, argumentInput); //dummy
     }
 
     @Override

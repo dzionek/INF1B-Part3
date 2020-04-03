@@ -1,6 +1,6 @@
 public class SearchCmd extends LibraryCommand {
-    public SearchCmd(String multiWordSearchTermSingleHit) {
-        //dummy
+    public SearchCmd(String argumentInput) {
+        super(CommandType.SEARCH, argumentInput); //dummy
     }
 
     @Override

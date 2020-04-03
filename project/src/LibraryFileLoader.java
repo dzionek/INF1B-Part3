@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,6 +10,15 @@ import java.util.Objects;
  * book data from file.
  */
 public class LibraryFileLoader {
+
+    /**
+     * Positions of data types in each line of a file.
+     */
+    private static final int TITLE_POSITION   = 0;
+    private static final int AUTHORS_POSITION = 1;
+    private static final int RATING_POSITION  = 2;
+    private static final int ISBN_POSITION    = 3;
+    private static final int PAGES_POSITION   = 4;
 
     /**
      * Contains all lines read from a book data file using
@@ -65,10 +75,43 @@ public class LibraryFileLoader {
      * 
      * @return books parsed from the previously loaded book data or an empty list
      * if no book data has been loaded yet.
-     * @throws UnsupportedOperationException Not implemented yet!
      */
     public List<BookEntry> parseFileContent() {
-        // TODO Remove exception and implement me
-        throw new UnsupportedOperationException("Parsing library files is not yet implemented.");
+        ArrayList<BookEntry> bookEntries = new ArrayList<>();
+
+        // We need to ignore the first line, column headers are not actual data.
+        boolean firstLine = true;
+        if (contentLoaded()) {
+            for (String line : fileContent) {
+                if (firstLine) {
+                    firstLine = false;
+                    continue;
+                }
+                bookEntries.add(parseLine(line));
+            }
+        } else {
+            System.err.println("ERROR: No content loaded before parsing.");
+        }
+
+        return bookEntries;
+    }
+
+    /**
+     * Parse a line of {@link LibraryFileLoader#fileContent}.
+     * Each line is mapped to a corresponding {@link BookEntry} instance.
+     *
+     * @param line one line of a file.
+     * @return corresponding book entry.
+     */
+    private BookEntry parseLine(String line) {
+        String[] lineByDataTypes = line.split(",");
+
+        String title = lineByDataTypes[TITLE_POSITION];
+        String[] authors = lineByDataTypes[AUTHORS_POSITION].split("-");
+        float rating = Float.parseFloat(lineByDataTypes[RATING_POSITION]);
+        String ISBN = lineByDataTypes[ISBN_POSITION];
+        int pages = Integer.parseInt(lineByDataTypes[PAGES_POSITION]);
+
+        return new BookEntry(title, authors, rating, ISBN, pages);
     }
 }

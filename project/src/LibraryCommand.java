@@ -28,10 +28,6 @@ public abstract class LibraryCommand {
 		}
 	}
 
-    public LibraryCommand() {
-        //dummy
-    }
-
     /**
 	 * The specific type of this command.
 	 * @return specific type of this command

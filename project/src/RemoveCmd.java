@@ -1,6 +1,6 @@
 public class RemoveCmd extends LibraryCommand {
-    public RemoveCmd(String s) {
-        //dummy
+    public RemoveCmd(String argumentInput) {
+        super(CommandType.REMOVE, argumentInput); //dummy
     }
 
     @Override

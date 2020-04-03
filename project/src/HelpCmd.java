@@ -9,8 +9,8 @@ public class HelpCmd extends LibraryCommand {
     /**
      * Create a help command.
      * 
-     * @param argumentInput argument input is expected to be blank
-     * @throws IllegalArgumentException if given arguments are invalid
+     * @param argumentInput argument input is expected to be blank.
+     * @throws IllegalArgumentException if given arguments are invalid.
      * @throws NullPointerException if the given argumentInput is null.
      */
     public HelpCmd(String argumentInput) {
