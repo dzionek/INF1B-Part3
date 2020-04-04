@@ -25,9 +25,9 @@ public class AddCmd extends LibraryCommand {
     }
 
     /**
-     * Checks if the argument is a path to a file with extension {@value EXTENSION}.
-     * @param argumentInput argument input for this command
-     * @return if argument has correct extension.
+     * Checks if an argument is a path to a file with extension {@value EXTENSION}.
+     * @param argumentInput argument input for add command, path to a file.
+     * @return true if argument has correct extension, otherwise false.
      */
     @Override
     protected boolean parseArguments(String argumentInput) {
@@ -42,6 +42,7 @@ public class AddCmd extends LibraryCommand {
     /**
      * Execute the add command.
      * @param data book data to be considered for command execution.
+     * @throws NullPointerException if a given argument is null.
      */
     @Override
     public void execute(LibraryData data) {
