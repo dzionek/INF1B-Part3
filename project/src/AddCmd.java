@@ -31,6 +31,8 @@ public class AddCmd extends LibraryCommand {
      */
     @Override
     protected boolean parseArguments(String argumentInput) {
+        Objects.requireNonNull(argumentInput, "Given input argument must not be null.");
+
         if (argumentInput.length() > EXTENSION.length()) {
             String lastFourChars = argumentInput.substring(argumentInput.length() - EXTENSION.length());
             return lastFourChars.equals(EXTENSION);

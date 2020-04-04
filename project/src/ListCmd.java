@@ -37,6 +37,8 @@ public class ListCmd extends LibraryCommand {
      */
     @Override
     protected boolean parseArguments(String argumentInput) {
+        Objects.requireNonNull(argumentInput, "Given input argument must not be null.");
+
         if (argumentInput.equals(SHORT_ARG) || argumentInput.equals("")) {
             mode = SHORT_ARG;
             return true;
@@ -59,9 +61,7 @@ public class ListCmd extends LibraryCommand {
         Objects.requireNonNull(data, "Library data must not be null.");
         Objects.requireNonNull(mode, "Mode must not be null.");
 
-        List<BookEntry> books = data.getBookData();
-
-        requireNonNullBooks(books);
+        List<BookEntry> books = data.getNonNullBookData();
 
         if (books.isEmpty()) {
             System.out.println(EMPTY_MESSAGE);
@@ -77,19 +77,11 @@ public class ListCmd extends LibraryCommand {
         }
     }
 
-    private void requireNonNullBooks(List<BookEntry> books) {
-        Objects.requireNonNull(books, "List of books must not be null.");
-
-        for (BookEntry book : books) {
-            Objects.requireNonNull(book, "Book in a list must not be null.");
-        }
-    }
-
     /**
      * Prints header with a number of books in a library.
      * @param books list of all books in a library which is not null.
      */
-    private void headerPrint(List<BookEntry> books) {
+    private static void headerPrint(List<BookEntry> books) {
         System.out.println(books.size() + HEADER);
     }
 
@@ -97,7 +89,7 @@ public class ListCmd extends LibraryCommand {
      * Print a book in a shorter form (only titles).
      * @param book a book in a library which is not null.
      */
-    private void shortPrint(BookEntry book) {
+    private static void shortPrint(BookEntry book) {
         System.out.println(book.getTitle());
     }
 
@@ -105,7 +97,7 @@ public class ListCmd extends LibraryCommand {
      * Print a book in a longer form. {@link BookEntry#toString}
      * @param book a book in a library which is not null.
      */
-    private void longPrint(BookEntry book) {
+    private static void longPrint(BookEntry book) {
         System.out.println(book);
     }
 }
