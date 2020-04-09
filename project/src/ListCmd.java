@@ -61,7 +61,7 @@ public class ListCmd extends LibraryCommand {
         Objects.requireNonNull(data, "Library data must not be null.");
         Objects.requireNonNull(mode, "Mode must not be null.");
 
-        List<BookEntry> books = data.getNonNullBookData();
+        List<BookEntry> books = LibraryUtils.getNonNullBookData(data);
 
         if (books.isEmpty()) {
             System.out.println(EMPTY_MESSAGE);

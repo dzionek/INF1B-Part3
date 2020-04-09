@@ -7,10 +7,6 @@ import java.util.Objects;
  */
 public class RemoveCmd extends LibraryCommand {
 
-    /** Command argument which says that we want to remove a book of a certain author. */
-    private static final String AUTHOR_ARG = "AUTHOR";
-    /** Command argument which says that we want to remove a book of a certain title. */
-    private static final String TITLE_ARG = "TITLE";
     /** Gap between two arguments. */
     private static final String PADDING = " ";
     /** Message displayed after removing books by an author. */
@@ -20,7 +16,7 @@ public class RemoveCmd extends LibraryCommand {
     /** Message displayed after successfully removing books by a title. */
     private static final String REMOVE_TITLE_SUCCESSFULLY = ": removed successfully.";
 
-    /** There are two modes of an instance, either {@value AUTHOR_ARG} or {@value TITLE_ARG}*/
+    /** There are two modes of an instance, either {@link DataType#AUTHOR} or {@link DataType#TITLE}*/
     private String mode;
     /** Full title or author name depending which {@link RemoveCmd#mode} we have.*/
     private String modeParameter;
@@ -36,7 +32,7 @@ public class RemoveCmd extends LibraryCommand {
     }
 
     /**
-     * Checks if the argument starts with {@value AUTHOR_ARG} or {@value TITLE_ARG}
+     * Checks if the argument starts with {@link DataType#AUTHOR} or {@link DataType#TITLE}
      * followed by one whitespace and non-blank author/title.
      * @param argumentInput argument input for this command
      * @return {@code true} if the argument is valid, otherwise {@code false}.
@@ -45,10 +41,10 @@ public class RemoveCmd extends LibraryCommand {
     protected boolean parseArguments(String argumentInput) {
         Objects.requireNonNull(argumentInput, "Given input argument must not be null.");
 
-        if (argumentInput.startsWith(AUTHOR_ARG + PADDING)) {
-            mode = AUTHOR_ARG;
-        } else if (argumentInput.startsWith(TITLE_ARG + PADDING)) {
-            mode = TITLE_ARG;
+        if (argumentInput.startsWith(DataType.AUTHOR.name() + PADDING)) {
+            mode = DataType.AUTHOR.name();
+        } else if (argumentInput.startsWith(DataType.TITLE.name() + PADDING)) {
+            mode = DataType.TITLE.name();
         } else {
             return false;
         }
@@ -64,10 +60,10 @@ public class RemoveCmd extends LibraryCommand {
     @Override
     public void execute(LibraryData data) {
         Objects.requireNonNull(data, "Library data must not be null.");
-        List<BookEntry> books = data.getNonNullBookData();
+        List<BookEntry> books = LibraryUtils.getNonNullBookData(data);
         Iterator<BookEntry> booksIterator = books.iterator();
 
-        if (mode.equals(TITLE_ARG)) {
+        if (mode.equals(DataType.TITLE.name())) {
             removeTitle(booksIterator);
         } else {
             removeAuthor(booksIterator);

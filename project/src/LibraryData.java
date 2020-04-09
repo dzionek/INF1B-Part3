@@ -70,16 +70,4 @@ public class LibraryData {
         }
         return count;
     }
-
-    public List<BookEntry> getNonNullBookData() {
-        List<BookEntry> books = getBookData();
-
-        Objects.requireNonNull(books, "List of books must not be null.");
-
-        for (BookEntry book : books) {
-            Objects.requireNonNull(book, "Book in a list must not be null.");
-        }
-
-        return books;
-    }
 }
