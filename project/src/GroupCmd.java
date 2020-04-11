@@ -1,9 +1,20 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
 
+/**
+ * Group command, which groups and displays books by their title or author.
+ */
 public class GroupCmd extends LibraryCommand {
+    /** Message displayed before printing groups. Followed by {@link DataType} value. */
     private static final String GROUPED_MESSAGE = "Grouped data by ";
+    /** Message displayed if a library is empty. */
     private static final String EMPTY_LIBRARY_MESSAGE = "The library has no book entries.";
+    /** String denoting titles starting with a digit, when grouping by title. */
     private static final String DIGITS_GROUP = "[0-9]";
+    /** String printed before a group, followed by group's letter or title. */
     private static final String GROUP_HEADER = "## ";
 
     private DataType mode;
