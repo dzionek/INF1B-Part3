@@ -44,7 +44,7 @@ public class SearchCmd extends LibraryCommand {
     @Override
     public void execute(LibraryData data) {
         Objects.requireNonNull(data, "Library data must not be null.");
-        List<BookEntry> books = LibraryUtils.getNonNullBookData(data);
+        List<BookEntry> books = Utils.getNonNullBookData(data);
         boolean nothingPrinted = true;
 
         for (BookEntry book : books) {

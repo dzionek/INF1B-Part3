@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -61,7 +60,7 @@ public class ListCmd extends LibraryCommand {
         Objects.requireNonNull(data, "Library data must not be null.");
         Objects.requireNonNull(mode, "Mode must not be null.");
 
-        List<BookEntry> books = LibraryUtils.getNonNullBookData(data);
+        List<BookEntry> books = Utils.getNonNullBookData(data);
 
         if (books.isEmpty()) {
             System.out.println(EMPTY_MESSAGE);

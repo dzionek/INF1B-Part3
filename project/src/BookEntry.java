@@ -110,28 +110,22 @@ public class BookEntry {
     }
 
     /**
-     * Gets string representation of an array without square brackets.
-     * @param array array of any non-primitive type, e.g. new Integer[] {1, 2, 3, 4, 5}.
-     * @return array string without square brackets, e.g. "1, 2, 3, 4, 5".
-     */
-    private <T>String arrayWithoutBrackets(T[] array) {
-        return Arrays.toString(array).replace("[", "").replace("]", "");
-    }
-
-    /**
      * Gets string representation of an instance.
      * @return string representation of an instance
      */
     @Override
     public String toString() {
-        String authorsPrintable = arrayWithoutBrackets(authors);
+        String authorsPrintable = Utils.arrayWithoutBrackets(authors);
         String ratingTwoDecimalPlaces = String.format("%.2f", rating);
 
-        return title + "\n" +
-                "by " + authorsPrintable + "\n" +
-                "Rating: " + ratingTwoDecimalPlaces + "\n" +
-                "ISBN: " + ISBN + "\n" +
-                pages + " pages\n";
+        StringBuilder sb = new StringBuilder();
+        sb.append(title).append("\n")
+                .append("by ").append(authorsPrintable).append("\n")
+                .append("Rating: ").append(ratingTwoDecimalPlaces).append("\n")
+                .append("ISBN: ").append(ISBN).append("\n")
+                .append(pages).append(" pages\n");
+
+        return sb.toString();
     }
 
     /**

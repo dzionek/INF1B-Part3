@@ -16,7 +16,7 @@ public class RemoveCmd extends LibraryCommand {
     /** Message displayed after successfully removing books by a title. */
     private static final String REMOVE_TITLE_SUCCESSFULLY = ": removed successfully.";
 
-    /** There are two modes of an instance, either {@link DataType#AUTHOR} or {@link DataType#TITLE}*/
+    /** There are two modes of an instance, either {@link BookField#AUTHOR} or {@link BookField#TITLE}*/
     private String mode;
     /** Full title or author name depending which {@link RemoveCmd#mode} we have.*/
     private String modeParameter;
@@ -32,7 +32,7 @@ public class RemoveCmd extends LibraryCommand {
     }
 
     /**
-     * Checks if the argument starts with {@link DataType#AUTHOR} or {@link DataType#TITLE}
+     * Checks if the argument starts with {@link BookField#AUTHOR} or {@link BookField#TITLE}
      * followed by one whitespace and non-blank author/title.
      * @param argumentInput argument input for this command
      * @return {@code true} if the argument is valid, otherwise {@code false}.
@@ -41,10 +41,10 @@ public class RemoveCmd extends LibraryCommand {
     protected boolean parseArguments(String argumentInput) {
         Objects.requireNonNull(argumentInput, "Given input argument must not be null.");
 
-        if (argumentInput.startsWith(DataType.AUTHOR.name() + PADDING)) {
-            mode = DataType.AUTHOR.name();
-        } else if (argumentInput.startsWith(DataType.TITLE.name() + PADDING)) {
-            mode = DataType.TITLE.name();
+        if (argumentInput.startsWith(BookField.AUTHOR.name() + PADDING)) {
+            mode = BookField.AUTHOR.name();
+        } else if (argumentInput.startsWith(BookField.TITLE.name() + PADDING)) {
+            mode = BookField.TITLE.name();
         } else {
             return false;
         }
@@ -60,10 +60,10 @@ public class RemoveCmd extends LibraryCommand {
     @Override
     public void execute(LibraryData data) {
         Objects.requireNonNull(data, "Library data must not be null.");
-        List<BookEntry> books = LibraryUtils.getNonNullBookData(data);
+        List<BookEntry> books = Utils.getNonNullBookData(data);
         Iterator<BookEntry> booksIterator = books.iterator();
 
-        if (mode.equals(DataType.TITLE.name())) {
+        if (mode.equals(BookField.TITLE.name())) {
             removeTitle(booksIterator);
         } else {
             removeAuthor(booksIterator);

@@ -7,8 +7,6 @@ public final class CommandFactory { // the final keyword prevents subclassing of
 
     /** Not to be used. */
     private CommandFactory() {
-        // Utility classes do not need constructors and this is a way of preventing them 
-        // from being instantiated accidentally.
         throw new UnsupportedOperationException("This constructor should never be used.");
     }
 
@@ -27,11 +25,6 @@ public final class CommandFactory { // the final keyword prevents subclassing of
 
         try {
             switch(cmdType) {
-                /* TODO Implement individual commands and comment
-                 * corresponding line back in once you have a class in place
-                 * Lastly, get rid of the unsupported Operation exception.
-                 */
-
                 case HELP: return new HelpCmd(argumentInput);
                 case EXIT: return new ExitCmd(argumentInput);
                 case ADD: return new AddCmd(argumentInput);
