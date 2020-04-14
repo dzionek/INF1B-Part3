@@ -24,6 +24,8 @@ public class ListCmd extends LibraryCommand {
      *                      or {@value SHORT_ARG}, or {@value LONG_ARG}.
      * @throws IllegalArgumentException if given arguments are invalid.
      * @throws NullPointerException if given arguments are null.
+     * @see LibraryCommand#LibraryCommand for errors handling.
+     * @see ListCmd#parseArguments for {@link ListCmd#mode} initialisation.
      */
     public ListCmd(String argumentInput) {
         super(CommandType.LIST, argumentInput);

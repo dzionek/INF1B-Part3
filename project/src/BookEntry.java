@@ -85,7 +85,7 @@ public class BookEntry {
     }
 
     /**
-     * Checks if the number of pages is not negative.
+     * Checks if a number of pages is not negative.
      * @param pages number of pages of a book.
      * @throws IllegalArgumentException if the number is negative.
      */

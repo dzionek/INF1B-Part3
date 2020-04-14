@@ -3,7 +3,8 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Remove command used to delete entries from a library if they have a given title or author.
+ * Remove command used to delete entries from a library
+ * if a given {@link BookField} value is common for them.
  */
 public class RemoveCmd extends LibraryCommand {
 
@@ -18,8 +19,10 @@ public class RemoveCmd extends LibraryCommand {
 
 
     /** One of {@link BookField} values. */
-    private String mode;
-    /** Full title or author name depending which {@link RemoveCmd#mode} we have.*/
+    private BookField mode;
+    /** Full information of {@link BookField} value
+     *  depending what {@link RemoveCmd#mode} is.
+     */
     private String modeParameter;
 
     /**
@@ -34,7 +37,10 @@ public class RemoveCmd extends LibraryCommand {
 
     /**
      * Checks if the argument starts with {@link BookField} value,
-     * followed by one whitespace and non-blank word.
+     * followed by whitespace and non-blank word.
+     *
+     * Assigns {@link RemoveCmd#mode} and {@link RemoveCmd#modeParameter}
+     *
      * @param argumentInput argument input for this command
      * @return {@code true} if the argument is valid, otherwise {@code false}.
      */
@@ -44,9 +50,10 @@ public class RemoveCmd extends LibraryCommand {
 
         boolean isFirstArgValid = false;
         for (BookField bookField : BookField.values()) {
-            mode = bookField.name();
-            if (argumentInput.startsWith(mode + PADDING)) {
+            String legalMode = bookField.name();
+            if (argumentInput.startsWith(legalMode + PADDING)) {
                 isFirstArgValid = true;
+                mode = bookField;
                 break;
             }
         }
@@ -54,7 +61,7 @@ public class RemoveCmd extends LibraryCommand {
         if (!isFirstArgValid) {
             return false;
         } else {
-            modeParameter = argumentInput.substring(mode.length() + PADDING.length());
+            modeParameter = argumentInput.substring(mode.name().length() + PADDING.length());
             return !modeParameter.isBlank();
         }
     }
@@ -62,6 +69,9 @@ public class RemoveCmd extends LibraryCommand {
     /**
      * Executes the remove command and remove all books with a certain title/author.
      * @param data book data to be considered for command execution.
+     * @throws NullPointerException if given parameter is null, list of books is null,
+     *                              or any entry in the list of books is null.
+     * @throws IllegalArgumentException if instance mode is invalid.
      */
     @Override
     public void execute(LibraryData data) {
@@ -69,15 +79,22 @@ public class RemoveCmd extends LibraryCommand {
         List<BookEntry> books = Utils.getNonNullBookData(data);
         Iterator<BookEntry> booksIterator = books.iterator();
 
-        if (mode.equals(BookField.TITLE.name())) {
-            removeTitle(booksIterator);
-        } else {
-            removeAuthor(booksIterator);
+        switch (mode) {
+            case TITLE:
+                removeTitle(booksIterator);
+                break;
+            case AUTHOR:
+                removeAuthor(booksIterator);
+                break;
+            default:
+                throw new IllegalArgumentException("The given mode is invalid.");
         }
     }
 
     /**
-     * Remove a book with a given title, if possible.
+     * Remove a book with a given title.
+     * If a book was successfully removed or not found, prints a special message.
+     *
      * @param booksIterator iterator of a list of all books.
      */
     private void removeTitle(Iterator<BookEntry> booksIterator) {
@@ -109,6 +126,8 @@ public class RemoveCmd extends LibraryCommand {
 
     /**
      * Remove a book with a given title, if possible.
+     * After that, prints a special message {@link RemoveCmd#printRemoveAuthor}
+     *
      * @param booksIterator iterator of a list of all books.
      */
     private void removeAuthor(Iterator<BookEntry> booksIterator) {

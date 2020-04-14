@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Search command, which searches for books with a title containing a given phrase.
+ * Search command used to search for books with a title containing a given phrase.
  */
 public class SearchCmd extends LibraryCommand {
 

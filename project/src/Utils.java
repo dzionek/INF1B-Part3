@@ -1,7 +1,7 @@
 import java.util.*;
 
 /**
- * Static class with helper functions needed for commands execution.
+ * Static utility class with helper functions needed for commands execution.
  */
 public final class Utils {
 
@@ -30,17 +30,17 @@ public final class Utils {
     }
 
     /**
-     * Add key -> value map into a given dictionary. Values of a given key are stored
-     * in ArrayList, if a given key already exists, its value is appended to the current values.
-     * @param key key to be added to HashMap.
-     * @param value value to be added to HashMap.
-     * @param dictionary HashMap we add key -> value pair into.
+     * Add key -> value pair into a given map. Values of a given key are stored
+     * in a list, if a given key already exists, its value is appended to the current values.
+     * @param key key to be added to a map.
+     * @param value value to be added to a map.
+     * @param dictionary a map we add key -> value pair into.
      */
-    public static <T> void packToDictionary(T key, T value, HashMap<T, ArrayList<T>> dictionary) {
+    public static <T> void packToMap(T key, T value, Map<T, List<T>> dictionary) {
         if (dictionary.containsKey(key)) {
             dictionary.get(key).add(value);
         } else {
-            ArrayList<T> values = new ArrayList<>();
+            List<T> values = new ArrayList<>();
             values.add(value);
             dictionary.put(key, values);
         }
