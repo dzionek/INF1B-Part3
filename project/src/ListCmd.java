@@ -15,7 +15,7 @@ public class ListCmd extends LibraryCommand {
     /** Message displayed when there are some books (n) in a library, of the form "n"+HEADER. */
     private static final String HEADER = " books in library:";
 
-    /** instance mode of displaying all books, either {@value SHORT_ARG} or {@value LONG_ARG}. */
+    /** Instance mode of displaying all books, either {@value SHORT_ARG} or {@value LONG_ARG}. */
     private String mode;
 
     /**
@@ -34,7 +34,7 @@ public class ListCmd extends LibraryCommand {
     /**
      * Check if an argument is blank, {@value SHORT_ARG}, or {@value LONG_ARG}.
      *
-     * Sets an instance field {@link ListCmd#mode} according to that.
+     * Set an instance field {@link ListCmd#mode} according to that.
      * Blank arguments is considered as {@value SHORT_ARG}.
      *
      * @param argumentInput argument input list command.

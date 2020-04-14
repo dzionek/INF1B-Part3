@@ -12,7 +12,14 @@ public class SearchCmd extends LibraryCommand {
     /** The phrase we search for. */
     private final String searchValue;
 
-    /** Generate search command. */
+    /** Generate search command.
+     * @param argumentInput argument input is expected to be not blank and
+     *                      have only one word.
+     * @throws IllegalArgumentException if given arguments are invalid.
+     * @throws NullPointerException if given arguments are null.
+     * @see LibraryCommand#LibraryCommand for errors handling.
+     * @see SearchCmd#parseArguments for {@link SearchCmd#searchValue} initialisation.
+     */
     public SearchCmd(String argumentInput) {
         super(CommandType.SEARCH, argumentInput);
         searchValue = argumentInput;
@@ -32,7 +39,8 @@ public class SearchCmd extends LibraryCommand {
 
     /**
      * Execute the command and displays either all books which were found,
-     * or a message that nothing was found
+     * or a message that nothing was found.
+     *
      * @param data book data to be considered for command execution.
      * @throws NullPointerException if library data is null, or list of books of the library is null,
      *                              or if any book in this list is null.
@@ -58,8 +66,8 @@ public class SearchCmd extends LibraryCommand {
 
     /**
      * Check whether a given string contains a given substring (case-insensitive).
-     * @param str a string we check whether a substring is contained in.
-     * @param subString a substring we check whether is contained in a string.
+     * @param str string we check whether a substring is contained in.
+     * @param subString substring we check whether is contained in a string.
      * @return {@code true} if str contains substring, otherwise {@code false}.
      */
     private static boolean containsIgnoreCase(String str, String subString) {

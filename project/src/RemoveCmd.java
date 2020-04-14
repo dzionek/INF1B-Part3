@@ -31,6 +31,9 @@ public class RemoveCmd extends LibraryCommand {
      *                      "{@link RemoveCmd#mode} {@link RemoveCmd#modeParameter}"
      * @throws IllegalArgumentException if given arguments are invalid.
      * @throws NullPointerException if given arguments are null.
+     * @see LibraryCommand#LibraryCommand for errors handling.
+     * @see RemoveCmd#parseArguments for {@link RemoveCmd#mode}
+     *      and {@link RemoveCmd#modeParameter} initialisation.
      */
     public RemoveCmd(String argumentInput) {
         super(CommandType.REMOVE, argumentInput);
@@ -40,7 +43,8 @@ public class RemoveCmd extends LibraryCommand {
      * Check if the argument starts with {@link BookField} value,
      * followed by whitespace and non-blank word.
      *
-     * Assigns {@link RemoveCmd#mode} and {@link RemoveCmd#modeParameter}
+     * Assign {@link RemoveCmd#mode} and {@link RemoveCmd#modeParameter} fields
+     * to an instance.
      *
      * @param argumentInput argument input for this command
      * @return {@code true} if the argument is valid, otherwise {@code false}.
