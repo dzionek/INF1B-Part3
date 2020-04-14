@@ -55,8 +55,8 @@ public class GroupCmd extends LibraryCommand {
     }
 
     /**
-     * Execute group command, displays books grouped according to {@link GroupCmd#mode}.
-     * If there are no books in a library, prints a special message instead.
+     * Execute group command, display books grouped according to {@link GroupCmd#mode}.
+     * If there are no books in a library, print a special message instead.
      *
      * @param data book data to be considered for command execution.
      * @throws NullPointerException if library, list of books, any book, or {@link GroupCmd#mode} is null.

@@ -56,7 +56,7 @@ public final class Utils {
      * @param array array of any non-primitive type, e.g. new Integer[] {1, 2, 3, 4, 5}.
      * @return array string without square brackets, e.g. "1, 2, 3, 4, 5".
      */
-    static <T>String arrayWithoutBrackets(T[] array) {
+    static <T> String arrayWithoutBrackets(T[] array) {
         return Arrays.toString(array).replace("[", "").replace("]", "");
     }
 }

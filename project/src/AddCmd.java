@@ -39,7 +39,7 @@ public class AddCmd extends LibraryCommand {
     /**
      * Execute an add command.
      * @param data book data to be considered for command execution.
-     * @throws NullPointerException if a given argument, or file path of an instance is null.
+     * @throws NullPointerException if a given argument or file path of an instance is null.
      */
     @Override
     public void execute(LibraryData data) {

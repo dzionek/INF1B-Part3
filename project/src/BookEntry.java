@@ -10,7 +10,7 @@ public class BookEntry {
     private static final int MIN_RATING = 0;
     /** Maximum rating of a book. */
     private static final int MAX_RATING = 5;
-    /** Minimum number of pages in a book. */
+    /** Minimum number of pages of a book. */
     private static final int MIN_NUM_PAGES = 0;
     /** Hash code multiplier for objects. */
     private static final int HASH_CODE_MUL = 31;
