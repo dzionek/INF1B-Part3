@@ -25,7 +25,8 @@ public class RemoveCmd extends LibraryCommand {
      */
     private String modeParameter;
 
-    /**
+    /** Create a remove command.
+     *
      * @param argumentInput input is expected to be of the form
      *                      "{@link RemoveCmd#mode} {@link RemoveCmd#modeParameter}"
      * @throws IllegalArgumentException if given arguments are invalid.
@@ -36,7 +37,7 @@ public class RemoveCmd extends LibraryCommand {
     }
 
     /**
-     * Checks if the argument starts with {@link BookField} value,
+     * Check if the argument starts with {@link BookField} value,
      * followed by whitespace and non-blank word.
      *
      * Assigns {@link RemoveCmd#mode} and {@link RemoveCmd#modeParameter}
@@ -67,7 +68,7 @@ public class RemoveCmd extends LibraryCommand {
     }
 
     /**
-     * Executes the remove command and remove all books with a certain title/author.
+     * Execute the remove command and remove all books with a certain title/author.
      * @param data book data to be considered for command execution.
      * @throws NullPointerException if given parameter is null, list of books is null,
      *                              or any entry in the list of books is null.
@@ -112,7 +113,7 @@ public class RemoveCmd extends LibraryCommand {
     }
 
     /**
-     * Displays a message after removing a book by a title.
+     * Display a message after removing a book by a title.
      * @param isRemoved {@code true} if a book was removed,
      *                  {@code false} if no book was removed.
      */
@@ -126,7 +127,7 @@ public class RemoveCmd extends LibraryCommand {
 
     /**
      * Remove a book with a given title, if possible.
-     * After that, prints a special message {@link RemoveCmd#printRemoveAuthor}
+     * After that, print a special message {@link RemoveCmd#printRemoveAuthor}
      *
      * @param booksIterator iterator of a list of all books.
      */
@@ -147,7 +148,7 @@ public class RemoveCmd extends LibraryCommand {
     }
 
     /**
-     * Displays a message after removing books by an author.
+     * Display a message after removing books by an author.
      * @param numberOfRemoved number of books that were removed.
      */
     private void printRemoveAuthor(int numberOfRemoved) {

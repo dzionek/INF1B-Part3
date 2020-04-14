@@ -22,7 +22,7 @@ public class GroupCmd extends LibraryCommand {
     private BookField mode;
 
     /**
-     * Creates a group method.
+     * Create a group method.
      * @param argumentInput argument input is expected to be {@link BookField} value.
      * @throws IllegalArgumentException if given argument is invalid.
      * @throws NullPointerException if given argument is null.
@@ -34,7 +34,7 @@ public class GroupCmd extends LibraryCommand {
     }
 
     /**
-     * Checks if a given argument is valid (is one of {@link BookField} value).
+     * Check if a given argument is valid (is one of {@link BookField} value).
      * @param argumentInput argument input for this command.
      * @return {@code true} if the argument is valid, otherwise {@code false}.
      * @throws NullPointerException if the given argument is null.
@@ -54,7 +54,7 @@ public class GroupCmd extends LibraryCommand {
     }
 
     /**
-     * Executes group command, displays books grouped according to {@link GroupCmd#mode}.
+     * Execute group command, displays books grouped according to {@link GroupCmd#mode}.
      * If there are no books in a library, prints a special message instead.
      *
      * @param data book data to be considered for command execution.
@@ -87,7 +87,7 @@ public class GroupCmd extends LibraryCommand {
     }
 
     /**
-     * Groups by title and print all groups.
+     * Group by title and print all groups.
      * @param books not null and not empty list of books which will be grouped.
      */
     private static void groupByTitle(List<BookEntry> books) {
@@ -111,7 +111,7 @@ public class GroupCmd extends LibraryCommand {
     }
 
     /**
-     * Groups all entries in a list into a TreeMap where a key is the first letter
+     * Group all entries in a list into a TreeMap where a key is the first letter
      * which maps to all entries starting with that letter.
      *
      * If a digit is a first letter, the key is {@value DIGITS_GROUP}.
@@ -136,7 +136,7 @@ public class GroupCmd extends LibraryCommand {
     }
 
     /**
-     * Prints {@value GROUP_HEADER} followed by TreeMap key
+     * Print {@value GROUP_HEADER} followed by TreeMap key
      * and all elements in a list corresponding to that key.
      *
      * @param treeMap a given not null, and not empty TreeMap to be printed.
@@ -151,7 +151,7 @@ public class GroupCmd extends LibraryCommand {
     }
 
     /**
-     * Groups by author, and prints all groups.
+     * Group by author, and prints all groups.
      * @param books list of books to be grouped and printed.
      */
     private static void groupByAuthor(List<BookEntry> books) {
@@ -160,7 +160,7 @@ public class GroupCmd extends LibraryCommand {
     }
 
     /**
-     * Gets a TreeMap where authors are keys, and values are books they have written,
+     * Get a TreeMap where authors are keys, and values are books they have written,
      * packed into a list.
      *
      * @param books list of books to be transformed into a HashMap.

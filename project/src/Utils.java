@@ -11,7 +11,7 @@ public final class Utils {
     }
 
     /**
-     * Gets list of books in library if this list is not null and all entries are not null.
+     * Get list of books in library if this list is not null and all entries are not null.
      * @param data a given library of books.
      * @return list of books of a library
      * @throws NullPointerException if library is empty, list of books is empty, or any book is empty.
@@ -47,7 +47,7 @@ public final class Utils {
     }
 
     /**
-     * Gets string representation of an array without square brackets.
+     * Get string representation of an array without square brackets.
      * @param array array of any non-primitive type, e.g. new Integer[] {1, 2, 3, 4, 5}.
      * @return array string without square brackets, e.g. "1, 2, 3, 4, 5".
      */

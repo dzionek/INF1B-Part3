@@ -12,14 +12,14 @@ public class SearchCmd extends LibraryCommand {
     /** The phrase we search for. */
     private final String searchValue;
 
-    /** Generates search command. */
+    /** Generate search command. */
     public SearchCmd(String argumentInput) {
         super(CommandType.SEARCH, argumentInput);
         searchValue = argumentInput;
     }
 
     /**
-     * Checks whether the given argument is not blank and has only one word.
+     * Check whether the given argument is not blank and has only one word.
      * @param argumentInput argument input for this command
      * @return {@code true} if the argument is valid, otherwise {@code false}.
      * @throws NullPointerException if the given argument is null.
@@ -31,7 +31,7 @@ public class SearchCmd extends LibraryCommand {
     }
 
     /**
-     * Executes the command and displays either all books which were found,
+     * Execute the command and displays either all books which were found,
      * or a message that nothing was found
      * @param data book data to be considered for command execution.
      * @throws NullPointerException if library data is null, or list of books of the library is null,
@@ -57,7 +57,7 @@ public class SearchCmd extends LibraryCommand {
     }
 
     /**
-     * Checks whether a given string contains a given substring (case-insensitive).
+     * Check whether a given string contains a given substring (case-insensitive).
      * @param str a string we check whether a substring is contained in.
      * @param subString a substring we check whether is contained in a string.
      * @return {@code true} if str contains substring, otherwise {@code false}.

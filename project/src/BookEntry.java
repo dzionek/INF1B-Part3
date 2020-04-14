@@ -27,7 +27,7 @@ public class BookEntry {
     private final int pages;
 
     /**
-     * Constructor of a BookEntry instance. Checks if all parameters are valid.
+     * Create a book entry. Check if all parameters are valid.
      * @param title title of a book.
      * @param authors names of authors of a book.
      * @param rating rating of a book.
@@ -46,7 +46,7 @@ public class BookEntry {
     }
 
     /**
-     * Checks if all parameters given to the constructor are valid.
+     * Check if all parameters given to the constructor are valid.
      * @see BookEntry#BookEntry for the description of parameters.
      * @throws NullPointerException if any object parameter is null.
      * @throws IllegalArgumentException if rating is not between {@value MIN_RATING} and {@value MAX_RATING},
@@ -63,7 +63,7 @@ public class BookEntry {
     }
 
     /**
-     * Checks if all entries in authors array are not null.
+     * Check if all entries in authors array are not null.
      * @param authors array of authors.
      * @throws NullPointerException if any of the entries are null.
      */
@@ -74,8 +74,8 @@ public class BookEntry {
     }
 
     /**
-     * Checks if rating is greater that {@value MIN_RATING} and less than {@value MAX_RATING}.
-     * @param rating a rating of a book.
+     * Check if rating is greater that {@value MIN_RATING} and less than {@value MAX_RATING}.
+     * @param rating rating of a book.
      * @throws IllegalArgumentException if the rating is not within boundaries.
      */
     private static void requireRatingWithinBoundaries(float rating) {
@@ -85,7 +85,7 @@ public class BookEntry {
     }
 
     /**
-     * Checks if a number of pages is not negative.
+     * Check if a number of pages is not less than {@value MIN_NUM_PAGES}.
      * @param pages number of pages of a book.
      * @throws IllegalArgumentException if the number is negative.
      */
@@ -96,13 +96,13 @@ public class BookEntry {
     }
 
     /**
-     * Gets title of an instance.
+     * Get title of an instance.
      * @return {@link BookEntry#title}.
      */
     public String getTitle() { return title; }
 
     /**
-     * Gets authors array of an instance.
+     * Get authors array of an instance.
      * @return {@link BookEntry#authors}.
      */
     public String[] getAuthors() {
@@ -110,7 +110,7 @@ public class BookEntry {
     }
 
     /**
-     * Gets rating of an instance.
+     * Get rating of an instance.
      * @return {@link BookEntry#rating}.
      */
     public float getRating() {
@@ -118,7 +118,7 @@ public class BookEntry {
     }
 
     /**
-     * Gets ISBN of an instance.
+     * Get ISBN of an instance.
      * @return {@link BookEntry#ISBN}.
      */
     public String getISBN() {
@@ -126,7 +126,7 @@ public class BookEntry {
     }
 
     /**
-     * Gets pages of an instance.
+     * Get pages of an instance.
      * @return {@link BookEntry#pages}.
      */
     public int getPages() {
@@ -134,7 +134,7 @@ public class BookEntry {
     }
 
     /**
-     * Gets string representation of an instance.
+     * Get string representation of an instance.
      * @return string representation of an instance.
      */
     @Override
@@ -153,7 +153,7 @@ public class BookEntry {
     }
 
     /**
-     * Checks if two objects are equal.
+     * Check if two objects are equal.
      * @param that the second object.
      * @return {@code true} if they are, otherwise {@code false}.
      */
@@ -170,7 +170,7 @@ public class BookEntry {
     }
 
     /**
-     * Generates the hash code of an instance.
+     * Generate the hash code of an instance.
      * @return hash code of an instance.
      */
     @Override

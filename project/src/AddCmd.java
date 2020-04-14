@@ -14,7 +14,7 @@ public class AddCmd extends LibraryCommand {
     private final Path filePath;
 
     /**
-     * Creates an add method.
+     * Create an add method.
      * @param argumentInput argument input is expected to be a path of a file.
      * @throws IllegalArgumentException if given arguments are invalid.
      * @throws NullPointerException if given arguments are null.
@@ -26,7 +26,7 @@ public class AddCmd extends LibraryCommand {
     }
 
     /**
-     * Checks if an argument is a file with extension {@value EXTENSION}.
+     * Check if an argument is a file with extension {@value EXTENSION}.
      * @param argumentInput argument input for add command - path of a file.
      * @return {@code true} if the argument has correct extension, otherwise {@code false}.
      */
@@ -39,7 +39,7 @@ public class AddCmd extends LibraryCommand {
     /**
      * Execute an add command.
      * @param data book data to be considered for command execution.
-     * @throws NullPointerException if a given argument is null.
+     * @throws NullPointerException if a given argument, or file path of an instance is null.
      */
     @Override
     public void execute(LibraryData data) {

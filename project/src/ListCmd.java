@@ -32,7 +32,7 @@ public class ListCmd extends LibraryCommand {
     }
 
     /**
-     * Checks if an argument is blank, {@value SHORT_ARG}, or {@value LONG_ARG}.
+     * Check if an argument is blank, {@value SHORT_ARG}, or {@value LONG_ARG}.
      *
      * Sets an instance field {@link ListCmd#mode} according to that.
      * Blank arguments is considered as {@value SHORT_ARG}.
@@ -83,7 +83,7 @@ public class ListCmd extends LibraryCommand {
     }
 
     /**
-     * Prints header with a number of books in a library.
+     * Print header with a number of books in a library.
      * @param books list of all books in a library which is not null.
      */
     private static void headerPrint(List<BookEntry> books) {
@@ -91,7 +91,7 @@ public class ListCmd extends LibraryCommand {
     }
 
     /**
-     * Prints a book in a shorter form (only titles).
+     * Print a book in a shorter form (only titles).
      * @param book a book in a library which is not null.
      */
     private static void shortPrint(BookEntry book) {
@@ -99,7 +99,7 @@ public class ListCmd extends LibraryCommand {
     }
 
     /**
-     * Prints a book in a longer form - the entire {@link BookEntry#toString}.
+     * Print a book in a longer form - the entire {@link BookEntry#toString}.
      * @param book a book in a library which is not null.
      */
     private static void longPrint(BookEntry book) {
