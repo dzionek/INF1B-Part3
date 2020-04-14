@@ -3,21 +3,22 @@ import java.nio.file.Paths;
 import java.util.Objects;
 
 /**
- * Add command, which adds books from a file to a library.
+ * Add command used to add books from a file to a library.
  */
 public class AddCmd extends LibraryCommand {
 
-    /** Extension of the expected file. */
+    /** Extension of an expected file. */
     private static final String EXTENSION = ".csv";
 
     /** File path of an instance. */
     private final Path filePath;
 
     /**
-     * Create an add method.
-     * @param argumentInput argument input is expected to be a path of the file.
+     * Creates an add method.
+     * @param argumentInput argument input is expected to be a path of a file.
      * @throws IllegalArgumentException if given arguments are invalid.
      * @throws NullPointerException if given arguments are null.
+     * @see LibraryCommand#LibraryCommand for errors handling.
      */
     public AddCmd(String argumentInput) {
         super(CommandType.ADD, argumentInput);
@@ -25,30 +26,25 @@ public class AddCmd extends LibraryCommand {
     }
 
     /**
-     * Checks if an argument is a path to a file with extension {@value EXTENSION}.
-     * @param argumentInput argument input for add command, path to a file.
-     * @return true if argument has correct extension, otherwise false.
+     * Checks if an argument is a file with extension {@value EXTENSION}.
+     * @param argumentInput argument input for add command - path of a file.
+     * @return {@code true} if the argument has correct extension, otherwise {@code false}.
      */
     @Override
     protected boolean parseArguments(String argumentInput) {
         Objects.requireNonNull(argumentInput, "Given input argument must not be null.");
-
-        if (argumentInput.length() > EXTENSION.length()) {
-            String lastFourChars = argumentInput.substring(argumentInput.length() - EXTENSION.length());
-            return lastFourChars.equals(EXTENSION);
-        } else {
-            return false;
-        }
+        return argumentInput.endsWith(EXTENSION);
     }
 
     /**
-     * Execute the add command.
+     * Execute an add command.
      * @param data book data to be considered for command execution.
      * @throws NullPointerException if a given argument is null.
      */
     @Override
     public void execute(LibraryData data) {
         Objects.requireNonNull(data, "Library data must not be null.");
+        Objects.requireNonNull(filePath, "File path must not be null. Check your AddCmd instance.");
         data.loadData(filePath);
     }
 }

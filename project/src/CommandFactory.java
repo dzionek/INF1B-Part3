@@ -3,7 +3,7 @@ import java.util.Objects;
 /**
  * Static factory for creating library commands.
  */
-public final class CommandFactory { // the final keyword prevents subclassing of this utility class
+public final class CommandFactory {
 
     /** Not to be used. */
     private CommandFactory() {
@@ -13,10 +13,10 @@ public final class CommandFactory { // the final keyword prevents subclassing of
     /**
      * Create library command for the given type and argument.
      * 
-     * @param cmdType Type of the command to be created
-     * @param argumentInput command argument to be used during initialisation of the command
+     * @param cmdType Type of the command to be created.
+     * @param argumentInput command argument to be used during initialisation of the command.
      * @return Command of the given type initialised for the given argument. If command creation 
-     * failed due to an illegal argument, null will be returned.
+     * failed due to an illegal argument, {@code null} will be returned.
      * @throws NullPointerException If one of the given parameters is null.
      */
     public static LibraryCommand createCommand(CommandType cmdType, String argumentInput) {

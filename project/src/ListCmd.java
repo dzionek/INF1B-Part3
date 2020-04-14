@@ -2,15 +2,15 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * List command, which shows all entries in a library.
+ * List command used to show all entries in a library.
  */
 public class ListCmd extends LibraryCommand {
 
-    /** Command argument, which display books in a shorter form. {@link ListCmd#shortPrint} */
+    /** Command argument, which displays books in a shorter form - {@link ListCmd#shortPrint} */
     private static final String SHORT_ARG = "short";
-    /** Command argument, which display books in a longer form. {@link ListCmd#longPrint} */
+    /** Command argument, which displays books in a longer form - {@link ListCmd#longPrint} */
     private static final String LONG_ARG  = "long";
-    /** Message displayed when there are no books in a library. */
+    /** Message displayed if there are no books in a library. */
     private static final String EMPTY_MESSAGE = "The library has no book entries.";
     /** Message displayed when there are some books (n) in a library, of the form "n"+HEADER. */
     private static final String HEADER = " books in library:";
@@ -31,14 +31,18 @@ public class ListCmd extends LibraryCommand {
 
     /**
      * Checks if an argument is blank, {@value SHORT_ARG}, or {@value LONG_ARG}.
+     *
+     * Sets an instance field {@link ListCmd#mode} according to that.
+     * Blank arguments is considered as {@value SHORT_ARG}.
+     *
      * @param argumentInput argument input list command.
-     * @return true if it is as described above, otherwise false.
+     * @return {@code true} if it is as described above, otherwise {@code false}.
      */
     @Override
     protected boolean parseArguments(String argumentInput) {
         Objects.requireNonNull(argumentInput, "Given input argument must not be null.");
 
-        if (argumentInput.equals(SHORT_ARG) || argumentInput.equals("")) {
+        if (argumentInput.equals(SHORT_ARG) || argumentInput.isBlank()) {
             mode = SHORT_ARG;
             return true;
         } else if (argumentInput.equals(LONG_ARG)){
@@ -85,7 +89,7 @@ public class ListCmd extends LibraryCommand {
     }
 
     /**
-     * Print a book in a shorter form (only titles).
+     * Prints a book in a shorter form (only titles).
      * @param book a book in a library which is not null.
      */
     private static void shortPrint(BookEntry book) {
@@ -93,7 +97,7 @@ public class ListCmd extends LibraryCommand {
     }
 
     /**
-     * Print a book in a longer form. {@link BookEntry#toString}
+     * Prints a book in a longer form - the entire {@link BookEntry#toString}.
      * @param book a book in a library which is not null.
      */
     private static void longPrint(BookEntry book) {

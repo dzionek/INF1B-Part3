@@ -3,11 +3,11 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Remove command, which deletes entries from a library with a certain title or author.
+ * Remove command used to delete entries from a library if they have a given title or author.
  */
 public class RemoveCmd extends LibraryCommand {
 
-    /** Gap between two arguments. */
+    /** Gap between arguments in a line given by user. */
     private static final String PADDING = " ";
     /** Message displayed after removing books by an author. */
     private static final String REMOVE_AUTHOR_MESSAGE = " books removed for author: ";
@@ -16,7 +16,8 @@ public class RemoveCmd extends LibraryCommand {
     /** Message displayed after successfully removing books by a title. */
     private static final String REMOVE_TITLE_SUCCESSFULLY = ": removed successfully.";
 
-    /** There are two modes of an instance, either {@link BookField#AUTHOR} or {@link BookField#TITLE}*/
+
+    /** One of {@link BookField} values. */
     private String mode;
     /** Full title or author name depending which {@link RemoveCmd#mode} we have.*/
     private String modeParameter;
@@ -32,8 +33,8 @@ public class RemoveCmd extends LibraryCommand {
     }
 
     /**
-     * Checks if the argument starts with {@link BookField#AUTHOR} or {@link BookField#TITLE}
-     * followed by one whitespace and non-blank author/title.
+     * Checks if the argument starts with {@link BookField} value,
+     * followed by one whitespace and non-blank word.
      * @param argumentInput argument input for this command
      * @return {@code true} if the argument is valid, otherwise {@code false}.
      */
@@ -41,16 +42,21 @@ public class RemoveCmd extends LibraryCommand {
     protected boolean parseArguments(String argumentInput) {
         Objects.requireNonNull(argumentInput, "Given input argument must not be null.");
 
-        if (argumentInput.startsWith(BookField.AUTHOR.name() + PADDING)) {
-            mode = BookField.AUTHOR.name();
-        } else if (argumentInput.startsWith(BookField.TITLE.name() + PADDING)) {
-            mode = BookField.TITLE.name();
-        } else {
-            return false;
+        boolean isFirstArgValid = false;
+        for (BookField bookField : BookField.values()) {
+            mode = bookField.name();
+            if (argumentInput.startsWith(mode + PADDING)) {
+                isFirstArgValid = true;
+                break;
+            }
         }
 
-        modeParameter = argumentInput.substring(mode.length() + PADDING.length());
-        return !modeParameter.isBlank();
+        if (!isFirstArgValid) {
+            return false;
+        } else {
+            modeParameter = argumentInput.substring(mode.length() + PADDING.length());
+            return !modeParameter.isBlank();
+        }
     }
 
     /**

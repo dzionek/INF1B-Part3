@@ -10,11 +10,12 @@ public class SearchCmd extends LibraryCommand {
     private static final String NOTHING_FOUND_MESSAGE = "No hits found for search term: ";
 
     /** The phrase we search for. */
-    private String searchValue;
+    private final String searchValue;
 
     /** Generates search command. */
     public SearchCmd(String argumentInput) {
         super(CommandType.SEARCH, argumentInput);
+        searchValue = argumentInput;
     }
 
     /**
@@ -26,12 +27,7 @@ public class SearchCmd extends LibraryCommand {
     @Override
     protected boolean parseArguments(String argumentInput) {
         Objects.requireNonNull(argumentInput, "Given input argument must not be null.");
-        if (argumentInput.isBlank() || argumentInput.contains(" ")) {
-            return false;
-        } else {
-            searchValue = argumentInput;
-            return true;
-        }
+        return !argumentInput.isBlank() && !argumentInput.contains(" ");
     }
 
     /**

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Group command, which groups and displays books by their title or author.
+ * Group command used to group and display books by {@link BookField} value.
  */
 public class GroupCmd extends LibraryCommand {
 
@@ -50,7 +50,7 @@ public class GroupCmd extends LibraryCommand {
      * Executes group command, displays books grouped according to {@link GroupCmd#mode}.
      * If there are no books in a library, prints a special message instead.
      * @param data book data to be considered for command execution.
-     * @throws NullPointerException if library, list of books, any book, or mode is null.
+     * @throws NullPointerException if library, list of books, any book, or {@link GroupCmd#mode} is null.
      * @throws IllegalArgumentException if an instance's mode is invalid.
      */
     @Override
@@ -99,6 +99,11 @@ public class GroupCmd extends LibraryCommand {
         return listOfTitles;
     }
 
+    /**
+     * Groups all entries in a list into a dictionary where a key is the first letter
+     * @param values
+     * @return
+     */
     private static HashMap<String, ArrayList<String>> groupByFirstLetter(List<String> values) {
         HashMap<String, ArrayList<String>> dictionary = new HashMap<>();
         for (String value : values) {

@@ -5,6 +5,7 @@ import java.util.Objects;
  * Immutable class encapsulating data for a single book entry.
  */
 public class BookEntry {
+
     /** Minimum rating of a book. */
     private static final int MIN_RATING = 0;
     /** Maximum rating of a book. */
@@ -35,8 +36,7 @@ public class BookEntry {
      * @throws NullPointerException in {@link BookEntry#validateParameters}.
      * @throws IllegalArgumentException in {@link BookEntry#validateParameters}.
      */
-    public BookEntry(String title, String[] authors, float rating, String ISBN, int pages)
-            throws NullPointerException, IllegalArgumentException {
+    public BookEntry(String title, String[] authors, float rating, String ISBN, int pages) {
         validateParameters(title, authors, rating, ISBN, pages);
         this.title = title;
         this.authors = authors;
@@ -49,23 +49,47 @@ public class BookEntry {
      * Checks if all parameters given to the constructor are valid.
      * @see BookEntry#BookEntry for the description of parameters.
      * @throws NullPointerException if any object parameter is null.
-     * @throws IllegalArgumentException if rating is not between {@value MIN_RATING} and {@value MAX_RATING}
+     * @throws IllegalArgumentException if rating is not between {@value MIN_RATING} and {@value MAX_RATING},
      *                                  or number of pages is less than {@value MIN_NUM_PAGES}.
      */
-    private void validateParameters(String title, String[] authors, float rating, String ISBN, int pages)
-            throws NullPointerException, IllegalArgumentException {
+    private static void validateParameters(String title, String[] authors, float rating, String ISBN, int pages) {
         Objects.requireNonNull(title, "Title must most not be null.");
         Objects.requireNonNull(authors, "Authors array must not be null.");
         Objects.requireNonNull(ISBN, "ISBN must not be null.");
 
+        requireNonNullAuthorsEntries(authors);
+        requireRatingWithinBoundaries(rating);
+        requireNonNegativePages(pages);
+    }
+
+    /**
+     * Checks if all entries in authors array are not null.
+     * @param authors array of authors.
+     * @throws NullPointerException if any of the entries are null.
+     */
+    private static void requireNonNullAuthorsEntries(String[] authors) {
         for (String author : authors) {
             Objects.requireNonNull(author, "Authors array entries must not be null.");
         }
+    }
 
+    /**
+     * Checks if rating is greater that {@value MIN_RATING} and less than {@value MAX_RATING}.
+     * @param rating a rating of a book.
+     * @throws IllegalArgumentException if the rating is not within boundaries.
+     */
+    private static void requireRatingWithinBoundaries(float rating) {
         if (rating < MIN_RATING || rating > MAX_RATING) {
             throw new IllegalArgumentException("Rating must be between 0 and 5");
         }
+    }
 
+    /**
+     * Checks if the number of pages is not negative.
+     * @param pages number of pages of a book.
+     * @throws IllegalArgumentException if the number is negative.
+     */
+    private static void requireNonNegativePages(int pages) {
         if (pages < MIN_NUM_PAGES) {
             throw new IllegalArgumentException("Number of pages must not be negative.");
         }
@@ -78,7 +102,7 @@ public class BookEntry {
     public String getTitle() { return title; }
 
     /**
-     * Gets authors of an instance.
+     * Gets authors array of an instance.
      * @return {@link BookEntry#authors}.
      */
     public String[] getAuthors() {
@@ -111,7 +135,7 @@ public class BookEntry {
 
     /**
      * Gets string representation of an instance.
-     * @return string representation of an instance
+     * @return string representation of an instance.
      */
     @Override
     public String toString() {
@@ -119,11 +143,11 @@ public class BookEntry {
         String ratingTwoDecimalPlaces = String.format("%.2f", rating);
 
         StringBuilder sb = new StringBuilder();
-        sb.append(title).append("\n")
-                .append("by ").append(authorsPrintable).append("\n")
-                .append("Rating: ").append(ratingTwoDecimalPlaces).append("\n")
-                .append("ISBN: ").append(ISBN).append("\n")
-                .append(pages).append(" pages\n");
+        sb.append(title).append("\n");
+        sb.append("by ").append(authorsPrintable).append("\n");
+        sb.append("Rating: ").append(ratingTwoDecimalPlaces).append("\n");
+        sb.append("ISBN: ").append(ISBN).append("\n");
+        sb.append(pages).append(" pages\n");
 
         return sb.toString();
     }
@@ -131,7 +155,7 @@ public class BookEntry {
     /**
      * Checks if two objects are equal.
      * @param that the second object.
-     * @return true if they are, otherwise false.
+     * @return {@code true} if they are, otherwise {@code false}.
      */
     @Override
     public boolean equals(Object that) {
@@ -146,13 +170,13 @@ public class BookEntry {
     }
 
     /**
-     * Generate the hash code of an instance.
+     * Generates the hash code of an instance.
      * @return hash code of an instance.
      */
     @Override
     public int hashCode() {
-        int result = Objects.hash(title, rating, ISBN, pages);
-        result = HASH_CODE_MUL * result + Arrays.hashCode(authors);
-        return result;
+        int hashCode = Objects.hash(title, rating, ISBN, pages);
+        hashCode = HASH_CODE_MUL * hashCode + Arrays.hashCode(authors);
+        return hashCode;
     }
 }
