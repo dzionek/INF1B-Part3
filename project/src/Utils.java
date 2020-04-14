@@ -1,4 +1,9 @@
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * Static utility class with helper functions needed for commands execution.
@@ -31,16 +36,16 @@ public final class Utils {
 
     /**
      * Add key -> value pair into a given map. Values of a given key are stored
-     * in a list, if a given key already exists, its value is appended to the current values.
+     * in a HashSet, if a given key already exists, its value is added to the set of values.
      * @param key key to be added to a map.
      * @param value value to be added to a map.
      * @param dictionary a map we add key -> value pair into.
      */
-    public static <T> void packToMap(T key, T value, Map<T, List<T>> dictionary) {
+    public static <T> void packToMap(T key, T value, Map<T, Set<T>> dictionary) {
         if (dictionary.containsKey(key)) {
             dictionary.get(key).add(value);
         } else {
-            List<T> values = new ArrayList<>();
+            Set<T> values = new HashSet<>();
             values.add(value);
             dictionary.put(key, values);
         }

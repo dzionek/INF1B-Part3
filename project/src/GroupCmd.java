@@ -1,7 +1,8 @@
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.TreeMap;
 
 /**
@@ -91,37 +92,37 @@ public class GroupCmd extends LibraryCommand {
      * @param books not null and not empty list of books which will be grouped.
      */
     private static void groupByTitle(List<BookEntry> books) {
-        List<String> listOfTitles = getListOfTitles(books);
-        TreeMap<String, List<String>> mapOfTitles = groupByFirstLetter(listOfTitles);
+        Set<String> listOfTitles = getListOfTitles(books);
+        Map<String, Set<String>> mapOfTitles = groupByFirstLetter(listOfTitles);
         printGrouped(mapOfTitles);
     }
 
     /**
-     * Get list of titles of a given list of books.
-     * Each book is mapped to its title.
+     * Get set of titles of a given list of books.
+     * Each book is mapped to its title and added to the set.
      * @param books not null and not empty list of books.
-     * @return list of titles in a library.
+     * @return set of all titles in a library.
      */
-    private static List<String> getListOfTitles(List<BookEntry> books) {
-        List<String> listOfTitles = new ArrayList<>();
+    private static Set<String> getListOfTitles(List<BookEntry> books) {
+        Set<String> titles = new HashSet<>();
         for (BookEntry book : books) {
-            listOfTitles.add(book.getTitle());
+            titles.add(book.getTitle());
         }
-        return listOfTitles;
+        return titles;
     }
 
     /**
-     * Group all entries in a list into a TreeMap where a key is the first letter
-     * which maps to all entries starting with that letter.
+     * Group all entries in a set into a TreeMap where a key is the first letter
+     * which maps to all entries starting with that letter, stored in a set.
      *
      * If a digit is a first letter, the key is {@value DIGITS_GROUP}.
      *
-     * @param values list of strings.
-     * @return Map of ordered keys where first letter of each list entry maps to a list
+     * @param values set of strings.
+     * @return Map of ordered keys where first letter of each set member maps to a set
      *         of all entries starting with that letter.
      */
-    private static TreeMap<String, List<String>> groupByFirstLetter(List<String> values) {
-        TreeMap<String, List<String>> map = new TreeMap<>();
+    private static Map<String, Set<String>> groupByFirstLetter(Set<String> values) {
+        Map<String, Set<String>> map = new TreeMap<>();
         for (String value : values) {
             char firstLetter = value.charAt(0);
             String key;
@@ -137,12 +138,12 @@ public class GroupCmd extends LibraryCommand {
 
     /**
      * Print {@value GROUP_HEADER} followed by TreeMap key
-     * and all elements in a list corresponding to that key.
+     * and all elements in a set corresponding to that key.
      *
      * @param treeMap a given not null, and not empty TreeMap to be printed.
      */
-    private static void printGrouped(TreeMap<String, List<String>> treeMap) {
-        for (Map.Entry<String, List<String>> entry : treeMap.entrySet()) {
+    private static void printGrouped(Map<String, Set<String>> treeMap) {
+        for (Map.Entry<String, Set<String>> entry : treeMap.entrySet()) {
             System.out.println(GROUP_HEADER + entry.getKey());
             for (String value : entry.getValue()) {
                 System.out.println(value);
@@ -155,19 +156,19 @@ public class GroupCmd extends LibraryCommand {
      * @param books list of books to be grouped and printed.
      */
     private static void groupByAuthor(List<BookEntry> books) {
-        TreeMap<String, List<String>> authorsTitles = getAuthorsTitles(books);
+        Map<String, Set<String>> authorsTitles = getAuthorsTitles(books);
         printGrouped(authorsTitles);
     }
 
     /**
      * Get a TreeMap where authors are keys, and values are books they have written,
-     * packed into a list.
+     * packed into a set.
      *
-     * @param books list of books to be transformed into a HashMap.
+     * @param books list of books to be transformed into a TreeMap.
      * @return TreeMap specified above, e.g. {author1 -> [book1, book2], author2 -> [book1]}.
      */
-    private static TreeMap<String, List<String>> getAuthorsTitles(List<BookEntry> books) {
-        TreeMap<String, List<String>> authorsTitles = new TreeMap<>();
+    private static Map<String, Set<String>> getAuthorsTitles(List<BookEntry> books) {
+        Map<String, Set<String>> authorsTitles = new TreeMap<>();
         for (BookEntry book : books) {
             String title = book.getTitle();
             for (String author : book.getAuthors()) {
