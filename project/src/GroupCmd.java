@@ -92,7 +92,7 @@ public class GroupCmd extends LibraryCommand {
      * @param books not null and not empty list of books which will be grouped.
      */
     private static void groupByTitle(List<BookEntry> books) {
-        Set<String> listOfTitles = getListOfTitles(books);
+        Set<String> listOfTitles = getSetOfTitles(books);
         Map<String, Set<String>> mapOfTitles = groupByFirstLetter(listOfTitles);
         printGrouped(mapOfTitles);
     }
@@ -103,7 +103,7 @@ public class GroupCmd extends LibraryCommand {
      * @param books not null and not empty list of books.
      * @return set of all titles in a library.
      */
-    private static Set<String> getListOfTitles(List<BookEntry> books) {
+    private static Set<String> getSetOfTitles(List<BookEntry> books) {
         Set<String> titles = new HashSet<>();
         for (BookEntry book : books) {
             titles.add(book.getTitle());
