@@ -53,7 +53,7 @@ public class SearchCmd extends LibraryCommand {
 
         for (BookEntry book : books) {
             String title = book.getTitle();
-            if (containsIgnoreCase(title, searchValue)) {
+            if (Utils.containsIgnoreCase(title, searchValue)) {
                 nothingPrinted = false;
                 System.out.println(title);
             }
@@ -64,13 +64,4 @@ public class SearchCmd extends LibraryCommand {
         }
     }
 
-    /**
-     * Check whether a given string contains a given substring (case-insensitive).
-     * @param str string we check whether a substring is contained in.
-     * @param subString substring we check whether is contained in a string.
-     * @return {@code true} if str contains substring, otherwise {@code false}.
-     */
-    private static boolean containsIgnoreCase(String str, String subString) {
-        return str.toLowerCase().contains(subString.toLowerCase());
-    }
 }

@@ -36,6 +36,8 @@ public class GroupCmd extends LibraryCommand {
 
     /**
      * Check if a given argument is valid (is one of {@link BookField} value).
+     * If it is valid, assign it to {@link GroupCmd#mode}.
+     *
      * @param argumentInput argument input for this command.
      * @return {@code true} if the argument is valid, otherwise {@code false}.
      * @throws NullPointerException if the given argument is null.
@@ -115,7 +117,7 @@ public class GroupCmd extends LibraryCommand {
      * Group all entries in a set into a TreeMap where a key is the first letter
      * which maps to all entries starting with that letter, stored in a set.
      *
-     * If a digit is a first letter, the key is {@value DIGITS_GROUP}.
+     * If the first letter is a digit, the key is {@value DIGITS_GROUP}.
      *
      * @param values set of strings.
      * @return Map of ordered keys where first letter of each set member maps to a set

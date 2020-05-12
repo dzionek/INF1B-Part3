@@ -10,19 +10,17 @@ public class RemoveCmd extends LibraryCommand {
 
     /** Gap between arguments in a line given by user. */
     private static final String PADDING = " ";
-    /** Message displayed after removing books by an author. */
+    /** Message displayed after removing books by its author. */
     private static final String REMOVE_AUTHOR_MESSAGE = " books removed for author: ";
-    /** Message displayed if there is no book with a given title. */
+    /** Message displayed if there is no book of a given title. */
     private static final String REMOVE_TITLE_NOT_FOUND_MESSAGE = ": not found.";
-    /** Message displayed after successfully removing books by a title. */
+    /** Message displayed after successfully removing books by its title. */
     private static final String REMOVE_TITLE_SUCCESSFULLY = ": removed successfully.";
 
 
     /** One of {@link BookField} values. */
     private BookField mode;
-    /** Full information of {@link BookField} value
-     *  depending what {@link RemoveCmd#mode} is.
-     */
+    /** Full information corresponding to {@link BookField} value. */
     private String modeParameter;
 
     /** Create a remove command.
@@ -46,7 +44,7 @@ public class RemoveCmd extends LibraryCommand {
      * Assign {@link RemoveCmd#mode} and {@link RemoveCmd#modeParameter} fields
      * to an instance.
      *
-     * @param argumentInput argument input for this command
+     * @param argumentInput argument input for this command.
      * @return {@code true} if the argument is valid, otherwise {@code false}.
      */
     @Override
@@ -72,7 +70,7 @@ public class RemoveCmd extends LibraryCommand {
     }
 
     /**
-     * Execute the remove command and remove all books with a certain title/author.
+     * Execute the remove command and remove all books of a given {@link RemoveCmd#mode}.
      * @param data book data to be considered for command execution.
      * @throws NullPointerException if given parameter is null, list of books is null,
      *                              or any entry in the list of books is null.
@@ -97,7 +95,7 @@ public class RemoveCmd extends LibraryCommand {
     }
 
     /**
-     * Remove a book with a given title.
+     * Remove a book of a given title.
      * If a book was successfully removed or not found, prints a special message.
      *
      * @param booksIterator iterator of a list of all books.
@@ -117,7 +115,7 @@ public class RemoveCmd extends LibraryCommand {
     }
 
     /**
-     * Display a message after removing a book by a title.
+     * Display a message after removing a book by its title.
      * @param isRemoved {@code true} if a book was removed,
      *                  {@code false} if no book was removed.
      */
@@ -130,8 +128,8 @@ public class RemoveCmd extends LibraryCommand {
     }
 
     /**
-     * Remove a book with a given title, if possible.
-     * After that, print a special message {@link RemoveCmd#printRemoveAuthor}
+     * Remove a book of a given title, if possible.
+     * After that, print a special message {@link RemoveCmd#printRemoveAuthor}.
      *
      * @param booksIterator iterator of a list of all books.
      */
@@ -152,7 +150,7 @@ public class RemoveCmd extends LibraryCommand {
     }
 
     /**
-     * Display a message after removing books by an author.
+     * Display a message after removing books by their author.
      * @param numberOfRemoved number of books that were removed.
      */
     private void printRemoveAuthor(int numberOfRemoved) {
