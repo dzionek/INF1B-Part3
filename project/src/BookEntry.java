@@ -33,8 +33,9 @@ public class BookEntry {
      * @param rating rating of a book.
      * @param ISBN ISBN of a book.
      * @param pages number of pages of a book.
-     * @throws NullPointerException in {@link BookEntry#validateParameters}.
-     * @throws IllegalArgumentException in {@link BookEntry#validateParameters}.
+     * @throws NullPointerException if any parameter is null.
+     * @throws IllegalArgumentException if any argument is not valid.
+     * @see BookEntry#validateParameters for more information about errors handling.
      */
     public BookEntry(String title, String[] authors, float rating, String ISBN, int pages) {
         validateParameters(title, authors, rating, ISBN, pages);
@@ -85,7 +86,7 @@ public class BookEntry {
     }
 
     /**
-     * Check if a number of pages is not less than {@value MIN_NUM_PAGES}.
+     * Check if a number of pages is greater than {@value MIN_NUM_PAGES}.
      * @param pages number of pages of a book.
      * @throws IllegalArgumentException if the number is negative.
      */
